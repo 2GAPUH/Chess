@@ -5,7 +5,7 @@
 int main()
 {
 
-    GameCore gameCore(1280, 720, "1.png");
+    GameCore gameCore(700, 700, "1.png");
 
     gameCore.start();
 

@@ -44,7 +44,8 @@ void GameCore::start()
 GameCore::GameCore(int w, int h, const string& board_file) :
 	board(board_file)
 {
-	win = new RenderWindow(VideoMode(w, h), "Chess");
+	win = new RenderWindow(VideoMode(w, h), "Chess", sf::Style::Titlebar | sf::Style::Close);
+
 }
 
 GameCore::GameCore(): GameCore(DEFAULT_WIN_W, DEFAULT_WIN_H, "1.png")

@@ -3,8 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
 using namespace sf;
-#define DEFAULT_WIN_W 1280
-#define DEFAULT_WIN_H 720
+#define DEFAULT_WIN_W 700
+#define DEFAULT_WIN_H 700
 
 
 class GameCore

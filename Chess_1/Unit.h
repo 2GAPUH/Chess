@@ -34,7 +34,7 @@ public:
 	int GetFigureType();
 	void SetFigurePosition(Vector2i pos);
 	Vector2i GetFigurePosition();
-	//void Draw();
+	void Draw();
 	Unit();
 	~Unit();
 

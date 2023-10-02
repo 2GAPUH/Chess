@@ -22,6 +22,11 @@ Vector2i Unit::GetFigurePosition()
 	return position;
 }
 
+void Unit::Draw()
+{
+	
+}
+
 Unit::Unit()
 {
 	std::string path;
