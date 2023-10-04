@@ -19,7 +19,6 @@ class Unit
 private:
 
 protected:
-	Image* image;
 	Texture* texture;
 	Sprite* sprite;
 	int color = 0;
@@ -34,10 +33,9 @@ public:
 	int GetFigureType();
 	void SetFigurePosition(Vector2i pos);
 	Vector2i GetFigurePosition();
-	void Draw();
+	void Draw(RenderWindow* win, Vector2f scale);
 	Unit();
 	~Unit();
-
 };
 
 

@@ -5,7 +5,7 @@
 int main()
 {
 
-    GameCore gameCore(700, 700, "1.png");
+    GameCore gameCore(700, 700, "Sprites//Chess_Board.png");
 
     gameCore.start();
 

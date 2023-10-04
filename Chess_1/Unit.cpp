@@ -22,9 +22,15 @@ Vector2i Unit::GetFigurePosition()
 	return position;
 }
 
-void Unit::Draw()
+void Unit::Draw(RenderWindow * win, Vector2f scale)
 {
-	
+	auto texSize = texture->getSize();
+	auto winSize = win->getSize();
+
+	sprite->setScale(scale);
+
+	sprite->setPosition(position.x * texSize.x * scale.x + 23 * scale.x, position.y * texSize.y * scale.y + 23 * scale.y);
+	win->draw(*sprite);
 }
 
 Unit::Unit()
@@ -116,23 +122,19 @@ Unit::Unit()
 	}
 
 
-	image = new Image;
 	texture = new Texture;
 	sprite = new Sprite;
 
-	image->loadFromFile(path);
-	texture->loadFromImage(*image);
+	texture->loadFromFile(path);
 	sprite->setTexture(*texture);
 
 	Unit::figuresInitCount++;
-	if (Unit::figuresInitCount <= 31)
+	if (Unit::figuresInitCount >= 32)
 		Unit::figuresInitCount = 0;
 }
 
 Unit::~Unit()
 {
-
-	delete image;
 	delete texture;
 	delete sprite;
 }

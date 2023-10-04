@@ -8,6 +8,8 @@ void GameCore::draw()
 	//–исуем то что вам нужно
 	board.Draw(win);
 
+	
+
 	win->display();
 }
 
@@ -23,7 +25,12 @@ void GameCore::update()
 			win->close();
 			break;
 
-			
+		case Event::MouseButtonPressed:
+			if (ev.mouseButton.button == Mouse::Left)
+			{
+				board.CheckClick(Mouse::getPosition(*win));
+			}
+			break;
 		}
 	}
 

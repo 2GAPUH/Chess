@@ -1,23 +1,29 @@
 #include "Board.h"
 
 
-void Board::FillFigures(Unit* figuresArray[], Cage** cageArray)
+void Board::FillFigures()
 {
 	for (int i = 0; i < FIGURES_COUNT; i++)
 	{
 		switch (Unit::figuresInitCount)
 		{
-		case 1:
+		case 0:
 			figuresArray[i] = new Rooks;
 			figuresArray[i]->SetFigureType(ROOKS);
 			cageArray[0][0].unit = figuresArray[i];
 			figuresArray[i]->SetFigurePosition(Vector2i(0, 0));
 			break;
-		case 16:
+		case 1:
 			figuresArray[i] = new Rooks;
 			figuresArray[i]->SetFigureType(ROOKS);
 			cageArray[0][7].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(0, 7));
+				figuresArray[i]->SetFigurePosition(Vector2i(0, 7));
+			break;
+		case 16:
+			figuresArray[i] = new Rooks;
+			figuresArray[i]->SetFigureType(ROOKS);
+			cageArray[7][7].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(7, 7));
 			break;
 		case 17:
 			figuresArray[i] = new Rooks;
@@ -25,12 +31,7 @@ void Board::FillFigures(Unit* figuresArray[], Cage** cageArray)
 			cageArray[7][0].unit = figuresArray[i];
 			figuresArray[i]->SetFigurePosition(Vector2i(7, 0));
 			break;
-		case 0:
-			figuresArray[i] = new Rooks;
-			figuresArray[i]->SetFigureType(ROOKS);
-			cageArray[7][7].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 7));
-			break;
+
 
 		case 2:
 			figuresArray[i] = new Knight;
@@ -159,50 +160,50 @@ void Board::FillFigures(Unit* figuresArray[], Cage** cageArray)
 		case 24:
 			figuresArray[i] = new Pawn;
 			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[7][0].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 0));
+			cageArray[6][0].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(6, 0));
 			break;
 		case 25:
 			figuresArray[i] = new Pawn;
 			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[7][1].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 1));
+			cageArray[6][1].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(6, 1));
 			break;
 		case 26:
 			figuresArray[i] = new Pawn;
 			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[7][2].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 2));
+			cageArray[6][2].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(6, 2));
 			break;
 		case 27:
 			figuresArray[i] = new Pawn;
 			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[7][3].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 3));
+			cageArray[6][3].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(6, 3));
 			break;
 		case 28:
 			figuresArray[i] = new Pawn;
 			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[7][4].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 4));
+			cageArray[6][4].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(6, 4));
 			break;
 		case 29:
 			figuresArray[i] = new Pawn;
 			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[7][5].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 5));
+			cageArray[6][5].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(6, 5));
 			break;
 		case 30:
 			figuresArray[i] = new Pawn;
 			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[7][6].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 6));
+			cageArray[6][6].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(6, 6));
 			break;
 		case 31:
 			figuresArray[i] = new Pawn;
 			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[7][7].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 7));
+			cageArray[6][7].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(6, 7));
 			break;
 		}
 	}
@@ -215,7 +216,12 @@ Board::Board(const std::string& path)
 	for (int i = 0; i < COLUMN_COUNT; i++)
 		cageArray[i] = new Cage[ROW_COUNT];
 
-	FillFigures(figuresArray, cageArray);
+	circArray = new SelectCirc * [COLUMN_COUNT];
+	for (int i = 0; i < COLUMN_COUNT; i++)
+		circArray[i] = new SelectCirc[ROW_COUNT];
+
+	FillFigures();
+	InitCircs();
 
 	texture = new Texture;
 	sprite = new Sprite;
@@ -223,7 +229,6 @@ Board::Board(const std::string& path)
 	texture->loadFromFile(path);
 	sprite->setTexture(*texture);
 	sprite->setPosition(0, 0);
-
 }
 
 Board::~Board()
@@ -231,6 +236,10 @@ Board::~Board()
 	for (int i = 0; i < COLUMN_COUNT; i++)
 		delete[] cageArray[i];
 	delete[] cageArray;
+
+	for (int i = 0; i < COLUMN_COUNT; i++)
+		delete[] circArray[i];
+	delete[] circArray;
 
 	for (int i = 0; i < FIGURES_COUNT; i++)
 	{
@@ -272,7 +281,48 @@ void Board::Draw(RenderWindow* win)
 	auto winSize = win->getSize();
 	auto texSize = texture->getSize();
 
-	sprite->setScale(winSize.x/ 1. / texSize.x, winSize.y / 1. / texSize.y);
+	scale = { winSize.x / 1.f / texSize.x, winSize.y / 1.f / texSize.y };
+	sprite->setScale(scale);
 
 	win->draw(*sprite);
+
+
+	for (int i = 0; i < COLUMN_COUNT; i++)
+		for (int j = 0; j < ROW_COUNT; j++)
+			circArray[i][j].Draw(win, scale);
+
+	for (int i = 0; i < FIGURES_COUNT; i++)
+		figuresArray[i]->Draw(win, scale);
+}
+
+void Board::CheckClick(Vector2i mousePos)
+{
+	auto textSize = texture->getSize();
+
+	lastClick.x = (mousePos.x - 23 * scale.x)  / (((textSize.x - 46) * scale.x) / 8);
+	lastClick.y = (mousePos.y - 23 * scale.y) / (((textSize.y - 46) * scale.y) / 8);
+	if (lastClick.x >= 8)
+		lastClick.x = 7;
+	if (lastClick.y >= 8)
+		lastClick.y = 7;
+	printf_s("%d %d\n", lastClick.x, lastClick.y);
+}
+
+void Board::InitCircs()
+{
+	for (int i = 0; i < COLUMN_COUNT; i++)
+		for (int j = 0; j < ROW_COUNT; j++)
+		{
+			circArray[i][j].SetPosition(Vector2i(i, j));
+		}
+}
+
+Vector2f Board::GetScale()
+{
+	return scale;
+}
+
+Vector2i Board::GetLstClick()
+{
+	return lastClick;
 }
