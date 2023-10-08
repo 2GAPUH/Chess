@@ -17,7 +17,8 @@ using namespace std;
 class Unit
 {
 private:
-
+	bool isSelected = false;// alex
+	bool selected = false;// alex
 protected:
 	Texture* texture;
 	Sprite* sprite;
@@ -25,7 +26,7 @@ protected:
 	int figureType = 0;
 
 	Vector2i position;
-
+		
 public:
 	Vector2i GetPosition();
 	static int figuresInitCount;
@@ -34,6 +35,11 @@ public:
 	void SetFigurePosition(Vector2i pos);
 	Vector2i GetFigurePosition();
 	void Draw(RenderWindow* win, Vector2f scale);
+//alex
+	int GetFigureColor() const;
+	void SetSelected(bool isSelected); // ƒобавим метод дл€ установки состо€ни€ выбора фигуры
+	bool IsSelected() const; // ƒобавим метод дл€ проверки, выбрана ли фигура
+//alex
 	Unit();
 	~Unit();
 };
@@ -46,7 +52,6 @@ class Queen : public Unit
 
 class King :public Unit
 {
-
 };
 
 class Pawn :public Unit
@@ -55,16 +60,13 @@ class Pawn :public Unit
 
 class Bishop :public Unit
 {
-
 };
 
 class Knight :public Unit
 {
-
 };
 
 
 class Rooks :public Unit
 {
-
 };

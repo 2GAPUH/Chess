@@ -11,9 +11,11 @@ class GameCore
 {
 	RenderWindow* win;
 	Board board;
+	Vector2i selectedPiecePosition = { 0, 0 }; // Alex
 
 	void draw();
 	void update();
+	bool IsMoveValid(const Vector2i& from, const Vector2i& to, Unit* selectedUnit);
 
 public:
 	void start();
