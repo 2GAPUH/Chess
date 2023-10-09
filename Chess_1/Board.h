@@ -33,7 +33,11 @@ public:
 	~Board();
 	void Draw(RenderWindow* win);
 	void CheckClick(Vector2i mousePos);
+	void Select();
+	void DeSelect();
 	void InitCircs();
+	void ResetPosition();
+	void SwapFigures(Vector2i pos1, Vector2i pos2);
 	Vector2f GetScale();
 	Vector2i GetLstClick();
 };

@@ -298,6 +298,7 @@ void Board::Draw(RenderWindow* win)
 void Board::CheckClick(Vector2i mousePos)
 {
 	auto textSize = texture->getSize();
+	DeSelect();
 
 	lastClick.x = (mousePos.x - 23 * scale.x)  / (((textSize.x - 46) * scale.x) / 8);
 	lastClick.y = (mousePos.y - 23 * scale.y) / (((textSize.y - 46) * scale.y) / 8);
@@ -306,6 +307,25 @@ void Board::CheckClick(Vector2i mousePos)
 	if (lastClick.y >= 8)
 		lastClick.y = 7;
 	printf_s("%d %d\n", lastClick.x, lastClick.y);
+	Select();
+	SwapFigures(Vector2i(0, 0), Vector2i(3, 3));
+	ResetPosition();
+}
+
+void Board::SwapFigures(Vector2i pos1, Vector2i pos2)
+{
+	cageArray[pos2.x][pos2.y].unit = cageArray[pos1.x][pos1.y].unit;
+	cageArray[pos1.x][pos1.y].unit = NULL;
+}
+
+void Board::ResetPosition()
+{
+	for (int i = 0; i < COLUMN_COUNT; i++)
+		for (int j = 0; j < ROW_COUNT; j++)
+		{
+			if(cageArray[i][j].unit != 0)
+				cageArray[i][j].unit->SetFigurePosition(Vector2i(i, j));
+		}
 }
 
 void Board::InitCircs()
@@ -315,6 +335,16 @@ void Board::InitCircs()
 		{
 			circArray[i][j].SetPosition(Vector2i(i, j));
 		}
+}
+
+void Board::DeSelect()
+{
+	circArray[lastClick.x][lastClick.y].SetState(false);
+}
+
+void Board::Select()
+{
+	circArray[lastClick.x][lastClick.y].SetState(true);
 }
 
 Vector2f Board::GetScale()

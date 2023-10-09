@@ -31,6 +31,13 @@ void GameCore::update()
 				board.CheckClick(Mouse::getPosition(*win));
 			}
 			break;
+
+		case Event::KeyPressed:
+			if (ev.key.code == Keyboard::Escape)
+			{
+				board.DeSelect();
+			}
+			break;
 		}
 	}
 
