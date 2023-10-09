@@ -111,14 +111,11 @@ void GameCore::update()
 
 					// Снимаем выделение с выбранной фигуры
 					selectedUnit->SetSelected(false);
-					selectedPiecePosition = { 0, 0 };
+					//selectedPiecePosition = { 0, 0 };
 				}
 			}
-			break;
 			//alex
-		}
-	}
-}
+			break;
 
 		case Event::KeyPressed:
 			if (ev.key.code == Keyboard::Escape)
@@ -128,6 +125,10 @@ void GameCore::update()
 			break;
 		}
 	}
+		
+}
+
+
 
 		
 void GameCore::start()
