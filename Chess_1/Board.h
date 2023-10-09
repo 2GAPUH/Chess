@@ -40,4 +40,5 @@ public:
 	void SwapFigures(Vector2i pos1, Vector2i pos2);
 	Vector2f GetScale();
 	Vector2i GetLstClick();
+	Cage** GetCageArray() { return cageArray; } // Alex
 };

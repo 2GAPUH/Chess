@@ -292,7 +292,11 @@ void Board::Draw(RenderWindow* win)
 			circArray[i][j].Draw(win, scale);
 
 	for (int i = 0; i < FIGURES_COUNT; i++)
+	{
+		auto figurePosition = figuresArray[i]->GetFigurePosition(); //Alex
+		cageArray[figurePosition.x][figurePosition.y].unit = figuresArray[i]; // Alex
 		figuresArray[i]->Draw(win, scale);
+	}
 }
 
 void Board::CheckClick(Vector2i mousePos)
@@ -356,3 +360,4 @@ Vector2i Board::GetLstClick()
 {
 	return lastClick;
 }
+
