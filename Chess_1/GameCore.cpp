@@ -97,8 +97,8 @@ void GameCore::update()
 			{
 				if (selectedPiecePosition.x != -1)
 				{
-					board.Swap(Vector2i(0, 0), Vector2i(3, 0));
-					board.RefreshPosition();
+					//board.Swap(Vector2i(0, 0),board.GetLstClick());
+					//board.RefreshPosition();
 					Vector2i releasedPosition = board.GetLstClick();
 					Unit* selectedUnit = board.GetCageArray()[selectedPiecePosition.x][selectedPiecePosition.y].unit;
 
@@ -117,6 +117,10 @@ void GameCore::update()
 				}
 			}
 			break;
+
+		case Event::KeyPressed:
+			if (ev.key.code == Keyboard::Escape)
+				;
 			//alex
 		}
 	}
