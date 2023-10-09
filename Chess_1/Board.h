@@ -36,5 +36,7 @@ public:
 	void InitCircs();
 	Vector2f GetScale();
 	Vector2i GetLstClick();
+	void Swap(Vector2i pos1, Vector2i pos2);
+	void RefreshFigures();
 	Cage** GetCageArray() { return cageArray; } // Alex
 };

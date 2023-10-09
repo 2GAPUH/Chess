@@ -321,6 +321,21 @@ void Board::InitCircs()
 		}
 }
 
+void Board::Swap(Vector2i pos1, Vector2i pos2)
+{
+	cageArray[pos2.x][pos2.y].unit = cageArray[pos1.x][pos1.y].unit;
+}
+
+void Board::RefreshFigures()
+{
+	for (int i = 0; i < COLUMN_COUNT; i++)
+		for (int j = 0; j < ROW_COUNT; j++)
+		{
+			if (cageArray[i][j].unit)
+				cageArray[i][j].unit->SetFigurePosition(Vector2i(i, j));
+		}
+}
+
 Vector2f Board::GetScale()
 {
 	return scale;
