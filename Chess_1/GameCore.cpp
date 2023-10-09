@@ -79,7 +79,7 @@ void GameCore::update()
 				Unit* clickedUnit = board.GetCageArray()[clickedPosition.x][clickedPosition.y].unit;
 				if (clickedUnit)
 				{
-					// Снимаем выделение с предыдущей выбранной фигуры
+					//Снимаем выделение с предыдущей выбранной фигуры
 					if (selectedPiecePosition.x != -1)
 					{
 						board.GetCageArray()[selectedPiecePosition.x][selectedPiecePosition.y].unit->SetSelected(false);
@@ -97,6 +97,8 @@ void GameCore::update()
 			{
 				if (selectedPiecePosition.x != -1)
 				{
+					board.Swap(Vector2i(0, 0), Vector2i(3, 0));
+					board.RefreshPosition();
 					Vector2i releasedPosition = board.GetLstClick();
 					Unit* selectedUnit = board.GetCageArray()[selectedPiecePosition.x][selectedPiecePosition.y].unit;
 
