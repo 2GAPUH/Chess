@@ -92,8 +92,8 @@ void Board::FillFigures()
 		case 22:
 			figuresArray[i] = new Queen;
 			figuresArray[i]->SetFigureType(QUEEN);
-			cageArray[7][3].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 3));
+			cageArray[7][4].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(7, 4));
 			break;
 
 		case 7:
@@ -105,8 +105,8 @@ void Board::FillFigures()
 		case 23:
 			figuresArray[i] = new King;
 			figuresArray[i]->SetFigureType(KING);
-			cageArray[7][4].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 4));
+			cageArray[7][3].unit = figuresArray[i];
+			figuresArray[i]->SetFigurePosition(Vector2i(7, 3));
 			break;
 
 		case 8:
