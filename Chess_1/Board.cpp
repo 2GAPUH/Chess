@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Pawn.h"
 
 
 void Board::FillFigures()
@@ -303,6 +304,8 @@ void Board::CheckClick(Vector2i mousePos)
 {
 	auto textSize = texture->getSize();
 
+	if (lastClick.x != -1)
+		prevClick = lastClick;
 	lastClick.x = (mousePos.x - 23 * scale.x)  / (((textSize.x - 46) * scale.x) / 8);
 	lastClick.y = (mousePos.y - 23 * scale.y) / (((textSize.y - 46) * scale.y) / 8);
 	if (lastClick.x >= 8)
@@ -321,9 +324,18 @@ void Board::InitCircs()
 		}
 }
 
-void Board::Swap(Vector2i pos1, Vector2i pos2)
+void Board::FigureSelect()
+{
+	if (cageArray[lastClick.x][lastClick.y].unit && select !=1)
+		select = 1;
+	else
+		select = 0;
+}
+
+void Board::SwapFigures(Vector2i pos1, Vector2i pos2)
 {
 	cageArray[pos2.x][pos2.y].unit = cageArray[pos1.x][pos1.y].unit;
+	cageArray[pos1.x][pos1.y].unit = NULL;
 }
 
 void Board::RefreshFigures()
@@ -336,6 +348,9 @@ void Board::RefreshFigures()
 		}
 }
 
+Cage** Board::GetCageArray() {
+	return cageArray;
+}
 Vector2f Board::GetScale()
 {
 	return scale;
@@ -344,5 +359,10 @@ Vector2f Board::GetScale()
 Vector2i Board::GetLstClick()
 {
 	return lastClick;
+}
+
+Vector2i Board::GetPrevClick()
+{
+	return prevClick;
 }
 

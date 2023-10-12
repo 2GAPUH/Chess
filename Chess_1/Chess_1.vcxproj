@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="GameCore.cpp" />
+    <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="SelectCirc.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Unit.cpp" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="GameCore.h" />
+    <ClInclude Include="Pawn.h" />
     <ClInclude Include="SelectCirc.h" />
     <ClInclude Include="Unit.h" />
   </ItemGroup>

@@ -27,23 +27,6 @@ Vector2i Unit::GetPosition()
 	return position;
 }
 
-//alex
- int Unit::GetFigureColor() const
-{
-	return color;
-}
-// Добавим определение метода SetSelected
-void Unit::SetSelected(bool isSelected)
-{
-	selected = isSelected;
-}
-
-// Добавим определение метода IsSelected
-bool Unit::IsSelected() const
-{
-	return selected;
-}
-//alex
 
 void Unit::Draw(RenderWindow * win, Vector2f scale)
 {
@@ -53,19 +36,6 @@ void Unit::Draw(RenderWindow * win, Vector2f scale)
 	sprite->setScale(scale);
 
 	sprite->setPosition(position.x * texSize.x * scale.x + 23 * scale.x, position.y * texSize.y * scale.y + 23 * scale.y);
-
-	//alex
-	if (selected)
-	{
-		sprite->setColor(Color::Yellow); // Измените цвет на желтый (или любой другой)
-	}
-	else
-	{
-		// Для обычных фигур оставляем их натуральный цвет
-		sprite->setColor(Color::White);
-	}
-
-	//alex
 
 	win->draw(*sprite);
 }

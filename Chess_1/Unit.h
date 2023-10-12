@@ -35,11 +35,9 @@ public:
 	void SetFigurePosition(Vector2i pos);
 	Vector2i GetFigurePosition();
 	void Draw(RenderWindow* win, Vector2f scale);
-//alex
-	int GetFigureColor() const;
-	void SetSelected(bool isSelected); // ƒобавим метод дл€ установки состо€ни€ выбора фигуры
-	bool IsSelected() const; // ƒобавим метод дл€ проверки, выбрана ли фигура
-//alex
+	int GetColor() {
+		return color;
+	}
 	Unit();
 	~Unit();
 };
@@ -54,9 +52,6 @@ class King :public Unit
 {
 };
 
-class Pawn :public Unit
-{
-};
 
 class Bishop :public Unit
 {
