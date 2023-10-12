@@ -13,6 +13,7 @@ using namespace std;
 #define BISHOP 5
 #define KNIGHT 6
 
+class Board;
 
 class Unit
 {
@@ -35,6 +36,7 @@ public:
 	void SetFigurePosition(Vector2i pos);
 	Vector2i GetFigurePosition();
 	void Draw(RenderWindow* win, Vector2f scale);
+	virtual bool IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board);
 	int GetColor() {
 		return color;
 	}

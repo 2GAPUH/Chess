@@ -40,6 +40,13 @@ void Unit::Draw(RenderWindow * win, Vector2f scale)
 	win->draw(*sprite);
 }
 
+bool Unit::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board)
+{
+	return false;
+}
+
+
+
 Unit::Unit()
 {
 	std::string path;

@@ -41,6 +41,9 @@ public:
 	Vector2i GetLstClick();
 	Vector2i GetPrevClick();
 	void SwapFigures(Vector2i pos1, Vector2i pos2);
+	SelectCirc** GetCircArray();
+	void ClearCircArray();
+
 	void RefreshFigures();
 	Cage** GetCageArray();
 };

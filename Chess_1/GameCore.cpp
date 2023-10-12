@@ -31,7 +31,7 @@ void GameCore::update()
 			if (ev.mouseButton.button == Mouse::Left)
 			{
 				board.CheckClick(Mouse::getPosition(*win));
-				if (board.select)
+				if (board.select && board.GetCageArray()[board.GetPrevClick().x][board.GetPrevClick().y].unit->IsMoveValid(board.GetPrevClick(), board.GetLstClick(), board))
 				{
 					board.SwapFigures(board.GetPrevClick(), board.GetLstClick());
 				}

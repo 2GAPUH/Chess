@@ -294,8 +294,8 @@ void Board::Draw(RenderWindow* win)
 
 	for (int i = 0; i < FIGURES_COUNT; i++)
 	{
-		auto figurePosition = figuresArray[i]->GetFigurePosition(); //Alex
-		cageArray[figurePosition.x][figurePosition.y].unit = figuresArray[i]; // Alex
+		//auto figurePosition = figuresArray[i]->GetFigurePosition(); //Alex
+		//cageArray[figurePosition.x][figurePosition.y].unit = figuresArray[i]; // Alex
 		figuresArray[i]->Draw(win, scale);
 	}
 }
@@ -365,4 +365,20 @@ Vector2i Board::GetPrevClick()
 {
 	return prevClick;
 }
+
+
+
+void Board::ClearCircArray()
+{
+	for (int i = 0; i < COLUMN_COUNT; i++)
+		for (int j = 0; j < ROW_COUNT; j++)
+			circArray[i][j].SetState(0);
+}
+
+SelectCirc** Board::GetCircArray()
+{
+	return circArray;
+}
+
+
 
