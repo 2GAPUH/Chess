@@ -9,7 +9,6 @@ void GameCore::draw()
 
 	//–исуем то что вам нужно
 	board.Draw(win);
-
 	
 
 	win->display();
@@ -31,26 +30,38 @@ void GameCore::update()
 			if (ev.mouseButton.button == Mouse::Left)
 			{
 				board.CheckClick(Mouse::getPosition(*win));
-				if (board.select && board.GetCageArray()[board.GetPrevClick().x][board.GetPrevClick().y].unit->IsMoveValid(board.GetPrevClick(), board.GetLstClick(), board))
+
+				if (board.GetCageArray()[board.GetPrevClick().x][board.GetPrevClick().y].unit != nullptr)
 				{
-					board.SwapFigures(board.GetPrevClick(), board.GetLstClick());
+					if (board.GetColor() == BLACK && board.GetCageArray()[board.GetPrevClick().x][board.GetPrevClick().y].unit->GetColor() == BLACK)
+					{
+						if (board.select && board.GetCageArray()[board.GetPrevClick().x][board.GetPrevClick().y].unit->IsMoveValid(board.GetPrevClick(), board.GetLstClick(), board))
+						{
+							board.SwapFigures(board.GetPrevClick(), board.GetLstClick());
+							board.SetColor(WHITE);
+
+						}
+						
+					}
+					else if (board.GetColor() == WHITE && board.GetCageArray()[board.GetPrevClick().x][board.GetPrevClick().y].unit->GetColor() == WHITE)
+					{
+						if (board.select && board.GetCageArray()[board.GetPrevClick().x][board.GetPrevClick().y].unit->IsMoveValid(board.GetPrevClick(), board.GetLstClick(), board))
+						{
+							board.SwapFigures(board.GetPrevClick(), board.GetLstClick());
+							board.SetColor(BLACK);
+
+						}
+					}
 				}
 				board.FigureSelect();
 				board.RefreshFigures();
+
+
 			}
 			else if (ev.mouseButton.button == Mouse::Right)
 			{
 				board.CheckClick(Mouse::getPosition(*win));
 				board.select = 0;
-			}
-			break;
-		case Event::MouseButtonReleased:
-			if (ev.mouseButton.button == Mouse::Left)
-			{
-				if (selectedPiecePosition.x != -1)
-				{
-					Vector2i releasedPosition = board.GetLstClick();
-				}
 			}
 			break;
 		}
@@ -69,6 +80,7 @@ void GameCore::start()
 	}
 
 }
+
 
 GameCore::GameCore(int w, int h, const string& board_file) :
 	board(board_file)

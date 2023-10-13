@@ -4,6 +4,7 @@
 bool Pawn::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board) {
     // Получаем разницу в позициях между начальной и конечной клетками.
          Vector2i diff = to - from;
+
         int pawnColor = board.GetCageArray()[from.x][from.y].unit->GetColor();
         int forwardDirection;
         if (pawnColor == WHITE) {
@@ -12,8 +13,6 @@ bool Pawn::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board) {
         else {
             forwardDirection = 1; // Для черных фигур движение вперед
         }
-
-
 
         // Пешка может двигаться на одну клетку вперед в соответствии с направлением
         if (diff.x == forwardDirection && diff.y == 0) 

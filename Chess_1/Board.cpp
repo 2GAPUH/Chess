@@ -379,6 +379,16 @@ void Board::ClearCircArray()
 			circArray[i][j].SetState(0);
 }
 
+void Board::SetColor(bool i)
+{
+	color = i;
+}
+
+bool Board::GetColor()
+{
+	return color;
+}
+
 SelectCirc** Board::GetCircArray()
 {
 	return circArray;

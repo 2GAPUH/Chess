@@ -18,6 +18,7 @@ public:
 class Board
 {
 private:
+	bool color=WHITE; //
 	void FillFigures();
 	Cage** cageArray = NULL;
 	Unit* figuresArray[32] = {0};
@@ -43,7 +44,8 @@ public:
 	void SwapFigures(Vector2i pos1, Vector2i pos2);
 	SelectCirc** GetCircArray();
 	void ClearCircArray();
-
+	void SetColor(bool i); //
+	bool GetColor(); //
 	void RefreshFigures();
 	Cage** GetCageArray();
 };

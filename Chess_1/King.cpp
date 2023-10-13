@@ -21,5 +21,6 @@ bool King::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board)
         }
     }
 
+ 
     return false;
 }
