@@ -44,26 +44,3 @@ public:
 	~Unit();
 };
 
-
-
-class Queen : public Unit
-{
-};
-
-class King :public Unit
-{
-};
-
-
-class Bishop :public Unit
-{
-};
-
-class Knight :public Unit
-{
-};
-
-
-class Rooks :public Unit
-{
-};

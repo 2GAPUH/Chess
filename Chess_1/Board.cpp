@@ -1,6 +1,10 @@
 #include "Board.h"
 #include "Pawn.h"
-
+#include "Bishop.h"
+#include "Rooks.h"
+#include "King.h"
+#include "Queen.h"
+#include "Knight.h"
 
 void Board::FillFigures()
 {
