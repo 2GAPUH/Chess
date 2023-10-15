@@ -6,217 +6,66 @@
 #include "Queen.h"
 #include "Knight.h"
 
+
+
 void Board::FillFigures()
 {
-	for (int i = 0; i < FIGURES_COUNT; i++)
+	int FigureOrder[ROW_COUNT][COLUMN_COUNT] =
 	{
-		switch (Unit::figuresInitCount)
+		{ROOK, KNIG, BISH, QUEN, KING, BISH, KNIG, ROOK},
+		{PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
+		{   0,    0,    0,    0,    0,    0,    0,    0},
+		{   0,    0,    0,    0,    0,    0,    0,    0},
+		{   0,    0,    0,    0,    0,    0,    0,    0},
+		{   0,    0,    0,    0,    0,    0,    0,    0},
+		{PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
+		{ROOK, KNIG, BISH, QUEN, KING, BISH, KNIG, ROOK}
+	};
+
+	Vector2i pos = { 0, 0 };
+	for(int i = 0; i < ROW_COUNT; i++)
+		for (int j = 0; j < COLUMN_COUNT; j++)
 		{
-		case 0:
-			figuresArray[i] = new Rooks;
-			figuresArray[i]->SetFigureType(ROOKS);
-			cageArray[0][0].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(0, 0));
-			break;
-		case 1:
-			figuresArray[i] = new Rooks;
-			figuresArray[i]->SetFigureType(ROOKS);
-			cageArray[0][7].unit = figuresArray[i];
-				figuresArray[i]->SetFigurePosition(Vector2i(0, 7));
-			break;
-		case 16:
-			figuresArray[i] = new Rooks;
-			figuresArray[i]->SetFigureType(ROOKS);
-			cageArray[7][7].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 7));
-			break;
-		case 17:
-			figuresArray[i] = new Rooks;
-			figuresArray[i]->SetFigureType(ROOKS);
-			cageArray[7][0].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 0));
-			break;
+			pos = { i, j };
+			switch (FigureOrder[i][j])
+			{
+			case ROOK:
+				figuresArray[Unit::figuresInitCount] = new Rooks(pos);
+				break;
 
+			case KNIG:
+				figuresArray[Unit::figuresInitCount] = new Knight(pos);
+				break;
 
-		case 2:
-			figuresArray[i] = new Knight;
-			figuresArray[i]->SetFigureType(KNIGHT);
-			cageArray[0][1].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(0, 1));
-			break;
-		case 3:
-			figuresArray[i] = new Knight;
-			figuresArray[i]->SetFigureType(KNIGHT);
-			cageArray[0][6].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(0, 6));
-			break;
-		case 18:
-			figuresArray[i] = new Knight;
-			figuresArray[i]->SetFigureType(KNIGHT);
-			cageArray[7][1].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 1));
-			break;
-		case 19:
-			figuresArray[i] = new Knight;
-			figuresArray[i]->SetFigureType(KNIGHT);
-			cageArray[7][6].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 6));
-			break;
+			case BISH:
+				figuresArray[Unit::figuresInitCount] = new Bishop(pos);
+				break;
 
-		case 4:
-			figuresArray[i] = new Bishop;
-			figuresArray[i]->SetFigureType(BISHOP);
-			cageArray[0][2].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(0, 2));
-			break;
-		case 5:
-			figuresArray[i] = new Bishop;
-			figuresArray[i]->SetFigureType(BISHOP);
-			cageArray[0][5].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(0, 5));
-			break;
-		case 20:
-			figuresArray[i] = new Bishop;
-			figuresArray[i]->SetFigureType(BISHOP);
-			cageArray[7][2].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 2));
-			break;
-		case 21:
-			figuresArray[i] = new Bishop;
-			figuresArray[i]->SetFigureType(BISHOP);
-			cageArray[7][5].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 5));
-			break;
+			case QUEN:
+				figuresArray[Unit::figuresInitCount] = new Queen(pos);
+				break;
 
-		case 6:
-			figuresArray[i] = new Queen;
-			figuresArray[i]->SetFigureType(QUEEN);
-			cageArray[0][4].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(0, 4));
-			break;
-		case 22:
-			figuresArray[i] = new Queen;
-			figuresArray[i]->SetFigureType(QUEEN);
-			cageArray[7][4].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 4));
-			break;
+			case KING:
+				figuresArray[Unit::figuresInitCount] = new King(pos);
+				break;
 
-		case 7:
-			figuresArray[i] = new King;
-			figuresArray[i]->SetFigureType(KING);
-			cageArray[0][3].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(0, 3));
-			break;
-		case 23:
-			figuresArray[i] = new King;
-			figuresArray[i]->SetFigureType(KING);
-			cageArray[7][3].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(7, 3));
-			break;
+			case PAWN:
+				figuresArray[Unit::figuresInitCount] = new Pawn(pos);
+				break;
 
-		case 8:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[1][0].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(1, 0));
-			break;
-		case 9:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[1][1].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(1, 1));
-			break;
-		case 10:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[1][2].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(1, 2));
-			break;
-		case 11:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[1][3].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(1, 3));
-			break;
-		case 12:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[1][4].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(1, 4));
-			break;
-		case 13:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[1][5].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(1, 5));
-			break;
-		case 14:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[1][6].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(1, 6));
-			break;
-		case 15:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[1][7].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(1, 7));
-			break;
-		case 24:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[6][0].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(6, 0));
-			break;
-		case 25:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[6][1].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(6, 1));
-			break;
-		case 26:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[6][2].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(6, 2));
-			break;
-		case 27:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[6][3].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(6, 3));
-			break;
-		case 28:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[6][4].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(6, 4));
-			break;
-		case 29:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[6][5].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(6, 5));
-			break;
-		case 30:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[6][6].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(6, 6));
-			break;
-		case 31:
-			figuresArray[i] = new Pawn;
-			figuresArray[i]->SetFigureType(PAWN);
-			cageArray[6][7].unit = figuresArray[i];
-			figuresArray[i]->SetFigurePosition(Vector2i(6, 7));
-			break;
+			case 0:
+				continue;
+			}
+			cageArray[i][j].unit = figuresArray[Unit::figuresInitCount];
 		}
-	}
+
+	//Убрать setfiguretype
 }
 
 //хранит указательна фигуру которая на ней стоит
 Board::Board(const std::string& path)
 {
+
 	cageArray = new Cage* [COLUMN_COUNT];
 	for (int i = 0; i < COLUMN_COUNT; i++)
 		cageArray[i] = new Cage[ROW_COUNT];
@@ -250,7 +99,7 @@ Board::~Board()
 	{
 		switch (figuresArray[i]->GetFigureType())
 		{
-		case QUEEN:
+		case QUEN:
 			delete (Queen*)figuresArray[i];
 			break;
 
@@ -262,15 +111,15 @@ Board::~Board()
 			delete (King*)figuresArray[i];
 			break;
 
-		case BISHOP:
+		case BISH:
 			delete (Bishop*)figuresArray[i];
 			break;
 
-		case KNIGHT:
+		case KNIG:
 			delete (Knight*)figuresArray[i];
 			break;
 
-		case ROOKS:
+		case ROOK:
 			delete (Rooks*)figuresArray[i];
 			break;
 
@@ -310,8 +159,8 @@ void Board::CheckClick(Vector2i mousePos)
 
 	if (lastClick.x != -1)
 		prevClick = lastClick;
-	lastClick.x = (mousePos.x - 23 * scale.x)  / (((textSize.x - 46) * scale.x) / 8);
-	lastClick.y = (mousePos.y - 23 * scale.y) / (((textSize.y - 46) * scale.y) / 8);
+	lastClick.x = (mousePos.x - BOARD_FRAME * scale.x)  / (((textSize.x - BOARD_FRAME * 2) * scale.x) / 8);
+	lastClick.y = (mousePos.y - BOARD_FRAME * scale.y) / (((textSize.y - BOARD_FRAME * 2) * scale.y) / 8);
 	if (lastClick.x >= 8)
 		lastClick.x = 7;
 	if (lastClick.y >= 8)

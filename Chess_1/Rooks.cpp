@@ -51,3 +51,19 @@ bool Rooks::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board)
 
     return false;
 }
+
+Rooks::Rooks(Vector2i& pos)
+{
+    figureType = ROOK;
+    position = pos;
+    if (pos.x > 4)
+    {
+        LoadTexture("Sprites\\Chess_WRooks.png");
+        color = WHITE;
+    }
+    else
+    {
+        LoadTexture("Sprites\\Chess_BRooks.png");
+        color = BLACK;
+    }
+}

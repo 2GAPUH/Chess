@@ -52,3 +52,19 @@ bool Pawn::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board) {
 
         return false;
 }
+
+Pawn::Pawn(Vector2i& pos)
+{
+    figureType = PAWN;
+    position = pos;
+    if (pos.x > 4)
+    {
+        LoadTexture("Sprites\\Chess_WPawn.png");
+        color = WHITE;
+    }
+    else
+    {
+        LoadTexture("Sprites\\Chess_BPawn.png");
+        color = BLACK;
+    }
+}

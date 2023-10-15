@@ -49,3 +49,19 @@ bool Bishop::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board)
     return true;
 }
 
+Bishop::Bishop(Vector2i& pos)
+{
+    figureType = BISH;
+    position = pos;
+    if (pos.x > 4)
+    {
+        LoadTexture("Sprites\\Chess_WBishop.png");
+        color = WHITE;
+    }
+    else
+    {
+        LoadTexture("Sprites\\Chess_BBishop.png");
+        color = BLACK;
+    }
+}
+

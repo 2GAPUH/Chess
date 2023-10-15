@@ -69,3 +69,19 @@ bool Queen::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board) 
 
     return false;
 }
+
+Queen::Queen(Vector2i& pos)
+{
+    figureType = QUEN;
+    position = pos;
+    if (pos.x > 4)
+    {
+        LoadTexture("Sprites\\Chess_WQuen.png");
+        color = WHITE;
+    }
+    else
+    {
+        LoadTexture("Sprites\\Chess_BQuen.png");
+        color = BLACK;
+    }
+}

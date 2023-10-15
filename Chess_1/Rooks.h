@@ -5,4 +5,5 @@
 class Rooks :public Unit{
 public:
 	bool IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board);
+	Rooks(Vector2i& pos);
 };

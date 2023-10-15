@@ -6,12 +6,12 @@ using namespace std;
 #include <string.h>
 #define BLACK 1
 #define WHITE 0
-#define QUEEN 1
+#define QUEN 1
 #define PAWN 2
-#define ROOKS 3
+#define ROOK 3
 #define KING 4
-#define BISHOP 5
-#define KNIGHT 6
+#define BISH 5
+#define KNIG 6
 
 class Board;
 
@@ -25,6 +25,7 @@ protected:
 	Sprite* sprite;
 	int color = 0;
 	int figureType = 0;
+	void LoadTexture(sf::String path);
 
 	Vector2i position;
 		

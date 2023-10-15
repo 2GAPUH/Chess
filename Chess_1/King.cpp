@@ -24,3 +24,19 @@ bool King::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board)
  
     return false;
 }
+
+King::King(Vector2i& pos)
+{
+    figureType = KING;
+    position = pos;
+    if (pos.x > 4)
+    {
+        LoadTexture("Sprites\\Chess_WKing.png");
+        color = WHITE;
+    }
+    else
+    {
+        LoadTexture("Sprites\\Chess_BKing.png");
+        color = BLACK;
+    }
+}

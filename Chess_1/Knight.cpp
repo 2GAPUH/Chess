@@ -23,3 +23,19 @@ bool Knight::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board)
 
     return false;
 }
+
+Knight::Knight(Vector2i& pos)
+{
+    figureType = KNIG;
+    position = pos;
+    if (pos.x > 4)
+    {
+        LoadTexture("Sprites\\Chess_WKnight.png");
+        color = WHITE;
+    }
+    else
+    {
+        LoadTexture("Sprites\\Chess_BKnight.png");
+        color = BLACK;
+    }
+}

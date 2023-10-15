@@ -20,5 +20,4 @@ public:
 	GameCore(int w, int h, const string& board_file);
 	GameCore();
 	~GameCore();
-
 };
