@@ -243,5 +243,13 @@ SelectCirc** Board::GetCircArray()
 	return circArray;
 }
 
+bool Board::CheckEndGame()
+{
+	for (int i = 0; i < FIGURES_COUNT;i++)
+		if (figuresArray[i]->GetFigureType() == KING && figuresArray[i]->GetFigurePosition().x < 0)
+			return 1;
+	return 0;
+
+}
 
 

@@ -50,4 +50,5 @@ public:
 	bool GetColor(); //
 	void RefreshFigures();
 	Cage** GetCageArray();
+	bool CheckEndGame();
 };

@@ -39,7 +39,8 @@ void GameCore::update()
 						{
 							board.SwapFigures(board.GetPrevClick(), board.GetLstClick());
 							board.SetColor(WHITE);
-
+							if (board.CheckEndGame())
+								win->close();
 						}
 						
 					}
@@ -49,7 +50,8 @@ void GameCore::update()
 						{
 							board.SwapFigures(board.GetPrevClick(), board.GetLstClick());
 							board.SetColor(BLACK);
-
+							if (board.CheckEndGame())
+								win->close();
 						}
 					}
 				}
@@ -67,6 +69,8 @@ void GameCore::update()
 		}
 	}
 }
+
+
 
 		
 void GameCore::start()
@@ -89,9 +93,7 @@ GameCore::GameCore(int w, int h, const string& board_file) :
 
 }
 
-GameCore::GameCore(): GameCore(DEFAULT_WIN_W, DEFAULT_WIN_H, "1.png")
-{
-}
+GameCore::GameCore(): GameCore(DEFAULT_WIN_W, DEFAULT_WIN_H, "1.png") {}
 
 GameCore::~GameCore()
 {
