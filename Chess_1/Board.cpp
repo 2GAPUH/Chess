@@ -12,14 +12,14 @@ void Board::FillFigures()
 {
 	int FigureOrder[ROW_COUNT][COLUMN_COUNT] =
 	{
-		{ROOK, KNIG, BISH, QUEN, KING, BISH, KNIG, ROOK},
+		{ROOK, KNIG, BISH, KING, QUEN, BISH, KNIG, ROOK},
 		{PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
 		{   0,    0,    0,    0,    0,    0,    0,    0},
 		{   0,    0,    0,    0,    0,    0,    0,    0},
 		{   0,    0,    0,    0,    0,    0,    0,    0},
 		{   0,    0,    0,    0,    0,    0,    0,    0},
 		{PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
-		{ROOK, KNIG, BISH, QUEN, KING, BISH, KNIG, ROOK}
+		{ROOK, KNIG, BISH, KING, QUEN, BISH, KNIG, ROOK}
 	};
 
 	Vector2i pos = { 0, 0 };
@@ -147,8 +147,6 @@ void Board::Draw(RenderWindow* win)
 
 	for (int i = 0; i < FIGURES_COUNT; i++)
 	{
-		//auto figurePosition = figuresArray[i]->GetFigurePosition(); //Alex
-		//cageArray[figurePosition.x][figurePosition.y].unit = figuresArray[i]; // Alex
 		figuresArray[i]->Draw(win, scale);
 	}
 }
@@ -157,14 +155,14 @@ void Board::CheckClick(Vector2i mousePos)
 {
 	auto textSize = texture->getSize();
 
-	if (lastClick.x != -1)
+	if (lastClick.x != UN_SCREEN_POS)
 		prevClick = lastClick;
-	lastClick.x = (mousePos.x - BOARD_FRAME * scale.x)  / (((textSize.x - BOARD_FRAME * 2) * scale.x) / 8);
-	lastClick.y = (mousePos.y - BOARD_FRAME * scale.y) / (((textSize.y - BOARD_FRAME * 2) * scale.y) / 8);
-	if (lastClick.x >= 8)
-		lastClick.x = 7;
-	if (lastClick.y >= 8)
-		lastClick.y = 7;
+	lastClick.x = (mousePos.x - BOARD_FRAME * scale.x)  / (((textSize.x - BOARD_FRAME * 2) * scale.x) / ROW_COUNT);
+	lastClick.y = (mousePos.y - BOARD_FRAME * scale.y) / (((textSize.y - BOARD_FRAME * 2) * scale.y) / ROW_COUNT);
+	if (lastClick.x >= ROW_COUNT)
+		lastClick.x = ROW_COUNT - 1;
+	if (lastClick.y >= ROW_COUNT)
+		lastClick.y = ROW_COUNT -1;
 	printf_s("%d %d\n", lastClick.x, lastClick.y);
 }
 
@@ -179,10 +177,10 @@ void Board::InitCircs()
 
 void Board::FigureSelect()
 {
-	if (cageArray[lastClick.x][lastClick.y].unit && select !=1)
-		select = 1;
+	if (cageArray[lastClick.x][lastClick.y].unit && select != true)
+		select = true;
 	else
-		select = 0;
+		select = false;
 }
 
 void Board::SwapFigures(Vector2i pos1, Vector2i pos2)
@@ -225,7 +223,7 @@ void Board::ClearCircArray()
 {
 	for (int i = 0; i < COLUMN_COUNT; i++)
 		for (int j = 0; j < ROW_COUNT; j++)
-			circArray[i][j].SetState(0);
+			circArray[i][j].SetState(false);
 }
 
 void Board::SetColor(bool i)
@@ -246,9 +244,9 @@ SelectCirc** Board::GetCircArray()
 bool Board::CheckEndGame()
 {
 	for (int i = 0; i < FIGURES_COUNT;i++)
-		if (figuresArray[i]->GetFigureType() == KING && figuresArray[i]->GetFigurePosition().x < 0)
-			return 1;
-	return 0;
+		if (figuresArray[i]->GetFigureType() == KING && figuresArray[i]->GetFigurePosition().x == UN_SCREEN_POS)
+			return true;
+	return false;
 
 }
 

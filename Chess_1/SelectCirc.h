@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 using namespace std;
+#define BOARD_SCALE 23
 
 class SelectCirc
 {

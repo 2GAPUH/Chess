@@ -28,7 +28,7 @@ Knight::Knight(Vector2i& pos)
 {
     figureType = KNIG;
     position = pos;
-    if (pos.x > 4)
+    if (pos.x > ROW_COUNT/2)
     {
         LoadTexture("Sprites\\Chess_WKnight.png");
         color = WHITE;

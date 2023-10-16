@@ -29,7 +29,7 @@ King::King(Vector2i& pos)
 {
     figureType = KING;
     position = pos;
-    if (pos.x > 4)
+    if (pos.x > ROW_COUNT/2)
     {
         LoadTexture("Sprites\\Chess_WKing.png");
         color = WHITE;

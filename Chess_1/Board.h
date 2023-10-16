@@ -8,7 +8,7 @@ using namespace sf;
 #define ROW_COUNT 8
 #define FIGURES_COUNT 32
 #define BOARD_FRAME 23
-
+#define UN_SCREEN_POS -1
 
 class Cage
 {

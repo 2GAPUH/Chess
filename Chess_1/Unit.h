@@ -12,6 +12,8 @@ using namespace std;
 #define KING 4
 #define BISH 5
 #define KNIG 6
+#define BOARD_SCALE 23
+#define FIGURES_COUNT 32
 
 class Board;
 
@@ -21,12 +23,11 @@ private:
 	bool isSelected = false;// alex
 	bool selected = false;// alex
 protected:
-	Texture* texture;
-	Sprite* sprite;
+	Texture* texture = nullptr;
+	Sprite* sprite = nullptr;
 	int color = 0;
 	int figureType = 0;
 	void LoadTexture(sf::String path);
-
 	Vector2i position;
 		
 public:

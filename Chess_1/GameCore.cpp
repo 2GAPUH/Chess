@@ -63,7 +63,7 @@ void GameCore::update()
 			else if (ev.mouseButton.button == Mouse::Right)
 			{
 				board.CheckClick(Mouse::getPosition(*win));
-				board.select = 0;
+				board.select = false;
 			}
 			break;
 		}

@@ -74,7 +74,7 @@ Queen::Queen(Vector2i& pos)
 {
     figureType = QUEN;
     position = pos;
-    if (pos.x > 4)
+    if (pos.x > ROW_COUNT/2)
     {
         LoadTexture("Sprites\\Chess_WQuen.png");
         color = WHITE;

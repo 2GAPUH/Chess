@@ -44,7 +44,7 @@ void Unit::Draw(RenderWindow * win, Vector2f scale)
 
 	sprite->setScale(scale);
 
-	sprite->setPosition(position.x * texSize.x * scale.x + 23 * scale.x, position.y * texSize.y * scale.y + 23 * scale.y);
+	sprite->setPosition(position.x * texSize.x * scale.x + BOARD_SCALE * scale.x, position.y * texSize.y * scale.y + BOARD_SCALE * scale.y);
 
 	win->draw(*sprite);
 }
@@ -59,7 +59,7 @@ bool Unit::IsMoveValid(const Vector2i& from, const Vector2i& to, Board& board)
 Unit::Unit()
 {
 	Unit::figuresInitCount++;
-	if (Unit::figuresInitCount >= 32)
+	if (Unit::figuresInitCount >= FIGURES_COUNT)
 		Unit::figuresInitCount = 0;
 }
 

@@ -39,7 +39,7 @@ void SelectCirc::Draw(RenderWindow* win, Vector2f scale)
 		
 		sprite->setScale(scale);
 
-		sprite->setPosition(position.x * texSize.x * scale.x + 23 * scale.x, position.y * texSize.y * scale.y + 23 * scale.y);
+		sprite->setPosition(position.x * texSize.x * scale.x + BOARD_SCALE * scale.x, position.y * texSize.y * scale.y + BOARD_SCALE * scale.y);
 
 		win->draw(*sprite);
 	}

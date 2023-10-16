@@ -53,7 +53,7 @@ Bishop::Bishop(Vector2i& pos)
 {
     figureType = BISH;
     position = pos;
-    if (pos.x > 4)
+    if (pos.x > ROW_COUNT/2)
     {
         LoadTexture("Sprites\\Chess_WBishop.png");
         color = WHITE;

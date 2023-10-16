@@ -56,7 +56,7 @@ Rooks::Rooks(Vector2i& pos)
 {
     figureType = ROOK;
     position = pos;
-    if (pos.x > 4)
+    if (pos.x > ROW_COUNT/2)
     {
         LoadTexture("Sprites\\Chess_WRooks.png");
         color = WHITE;
